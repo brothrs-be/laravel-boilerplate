@@ -49,14 +49,16 @@ class CustomerController extends Controller
         try {
             // Validate the request
             $request->validate([
-                'name' => 'required',
+                'firstname' => 'required|string',
+                'lastname' => 'required|string',
                 'email' => 'required|email',
+                'phone' => 'numeric',
             ]);
 
             // Store data in array
             $data = [
                 //
-                'name' => $request->name,
+                'name' => $request->firstname . ' ' . $request->lastname,
                 'email' => $request->email,
                 'address' => [
                     'city' => $request->city,
